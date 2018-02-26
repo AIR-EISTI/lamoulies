@@ -1,14 +1,14 @@
 from django.db import models
 
 
+class AnswerType(models.Model):
+    name = models.CharField(max_length=50)
+
+
 class Question(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
     answer_type = models.ForeignKey(AnswerType, on_delete=models.CASCADE)
-
-
-class AnswerType(models.Model):
-    name = models.CharField(max_length=50)
 
 
 class AnswerChoice(models.Model):
