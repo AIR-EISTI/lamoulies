@@ -17,20 +17,9 @@
       <img src="/static/img/unicorn-3090550_1920.jpg"/>
     </div>
     {% else %}
-      {% for question in questions %}
-        <div>
-          <h4>{{ question.title }}</h4>
-          <p>
-            {{ question.description }}
-          </p>
-          <select>
-            {% for answer_choice in question.answer_type.choices.all %}
-              <option>{{ answer_choice.value }}</option>
-            {% endfor %}
-          </select>
-        </div>
-      {% endfor %}
+      <form class="" action="index.html" method="post">
+        {{ form }}
+      </form>
     {% endif %}
-    {{ test }}
   </body>
 </html>
