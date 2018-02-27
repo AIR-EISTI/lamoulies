@@ -17,8 +17,13 @@
       <img src="/static/img/unicorn-3090550_1920.jpg"/>
     </div>
     {% else %}
-      <form class="" action="index.html" method="post">
-        {{ form }}
+      {% if saved %}
+      saved
+      {% endif %}
+      <form action="/" method="post">
+        {% csrf_token %}
+        {{ form.as_ul }}
+        <input type="submit" value="Voter">
       </form>
     {% endif %}
   </body>
