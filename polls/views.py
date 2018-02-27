@@ -34,5 +34,4 @@ def stats(request):
         return HttpResponseForbidden
 
     questions = {question: getResults(question) for question in Question.objects.all()}
-    print(questions)
     return render(request, 'stats.html', {'questions': questions})
