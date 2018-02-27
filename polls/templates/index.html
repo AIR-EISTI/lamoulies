@@ -7,9 +7,10 @@
   <body>
     {% if error %}
       <p>Connectez avec votre compte google de l'EISTI vous pour pouvoir votez !</p>
-      <a href="{% url 'social:begin' 'google-oauth2' %}">Login</a>
+      <a href="{% url 'social:begin' 'google-openidconnect' %}">Login</a>
     {% else %}
       Oué
     {% endif %}
+    {{ test }}
   </body>
 </html>

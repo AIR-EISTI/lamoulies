@@ -72,9 +72,7 @@ TEMPLATES = [
 ]
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.open_id_connect.OpenIdConnectAuth',
-    'social_core.backends.google.GoogleOpenId',
-    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.google_openidconnect.GoogleOpenIdConnect',
 )
 
 WSGI_APPLICATION = 'lamouliesdor.wsgi.application'
@@ -131,8 +129,7 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = 'home'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '196112637747-c076gl4bc4icpqrtthp6l6l43kjcredg.apps.googleusercontent.com'
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'RtV3A6pkywfaCPpqddu705Lz'
+SOCIAL_AUTH_GOOGLE_OPENIDCONNECT_SECRET = 'RtV3A6pkywfaCPpqddu705Lz'
+SOCIAL_AUTH_GOOGLE_OPENIDCONNECT_KEY = '196112637747-c076gl4bc4icpqrtthp6l6l43kjcredg.apps.googleusercontent.com'
 
 SOCIAL_AUTH_GET_ALL_EXTRA_DATA = True
