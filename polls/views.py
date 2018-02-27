@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponseRedirect
+from .models import Question
 
 
 def home(request):
@@ -14,5 +15,5 @@ def home(request):
 
     if not len(user):
         return render(request, 'index.html', {'error': 'domain'})
-
-    return render(request, 'index.html')
+    questions = Question.objects.all()
+    return render(request, 'index.html', {'questions': questions})

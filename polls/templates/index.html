@@ -9,7 +9,19 @@
       <p>Connectez avec votre compte google de l'EISTI vous pour pouvoir votez !</p>
       <a href="{% url 'social:begin' 'google-openidconnect' %}">Login</a>
     {% else %}
-      Oué
+      {% for question in questions %}
+        <div>
+          <h4>{{ question.title }}</h4>
+          <p>
+            {{ question.description }}
+          </p>
+          <select>
+            {% for answer_choice in question.answer_type.choices.all %}
+              <option>{{ answer_choice.value }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      {% endfor %}
     {% endif %}
     {{ test }}
   </body>

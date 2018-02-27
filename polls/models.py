@@ -13,7 +13,8 @@ class Question(models.Model):
 
 class AnswerChoice(models.Model):
     value = models.CharField(max_length=200)
-    answer_type = models.ForeignKey(AnswerType, on_delete=models.CASCADE)
+    answer_type = models.ForeignKey(
+        AnswerType, on_delete=models.CASCADE, related_name='choices')
 
 
 class UserAnswer(models.Model):
