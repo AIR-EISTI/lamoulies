@@ -3,11 +3,19 @@
   <head>
     <meta charset="utf-8">
     <title>Lamoulies d'Or</title>
+    <link rel="stylesheet" href="/static/style/style.css" />
   </head>
   <body>
     {% if error %}
-      <p>Connectez avec votre compte google de l'EISTI vous pour pouvoir votez !</p>
-      <a href="{% url 'social:begin' 'google-openidconnect' %}">Login</a>
+    <div id="login">
+      <h1>Lamoulies <strong>d'OR</strong></h1>
+      <p class="description">Connectez vous pour pouvoir votez !</p>
+      <div id="button-container">
+        <div class="line"></div>
+        <a href="{% url 'social:begin' 'google-openidconnect' %}">Login with Google</a>
+      </div>
+      <img src="/static/img/unicorn-3090550_1920.jpg"/>
+    </div>
     {% else %}
       {% for question in questions %}
         <div>

@@ -1,0 +1,111 @@
+html
+{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center bottom;
+    font-family: Georgia, Times, "Times New Roman", serif; 
+    background: linear-gradient(to bottom right, red,orange,yellow,green,blue,indigo,violet); */
+}
+
+@font-face
+{
+	font-family: "renogare";
+	
+	src:url("/static/fonts/renogare_soft/RenogareSoft-Regular.ttf") format("truetype"); /* chromeã€firefoxã€operaã€Safari, Android, iOS 4.2+*/
+}
+
+
+body
+{
+    margin: 0;
+    height: 100%;
+    background-color: rgb(244,244,244);
+    display:flex;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items:center;
+}
+
+#login
+{
+    text-align: center;
+    font-size: 1.3em;
+    background-color: white;
+    padding: 10px 0px;
+    width: 500px;
+    box-shadow: 1px 1px 15px lightgrey;
+}
+
+#login h1 strong
+{
+    color:darkgoldenrod;
+}
+
+#login h1
+{
+    padding: 80px 0;
+    font-family: renogare, 'sans';
+    letter-spacing: -1px;
+    font-weight: 500;
+    color: grey;
+}
+
+#login .description
+{
+    font-weight: 800;
+}
+
+#login a
+{
+    
+    display: inline-block;
+    background-color: #4fc2f8;
+    background: linear-gradient(to left,#4fa5f8,#4fc2f8);
+    color: white;
+    text-decoration: none;
+    padding: 10px 60px;
+    border-radius: 60px;
+    box-shadow: 2px 5px 15px #4fc2f8;
+    z-index: 10;
+    position: relative;
+}
+
+#login a:hover
+{
+    opacity: 0.85;
+}
+
+#button-container
+{
+    position: relative;
+    z-index: 1;
+    margin: 20px 0px;
+    margin-bottom: 80px;
+}
+
+#button-container .line
+{
+    position: absolute;
+    height: 2px;
+    background-color: #d0ecf8;
+    top: 50%;
+    left: -0px;
+    transform: translatey(-50%);
+    z-index: 1;
+    width: calc(100% + 0px);
+}
+
+#login img
+{
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-image: url("img/unicorn-3090550_1920.jpg");
+    width: 500px;
+}
