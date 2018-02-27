@@ -19,6 +19,7 @@ from polls import views
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('stats/', views.stats, name='stats'),
     path('admin/', admin.site.urls),
     path('auth/', include('social_django.urls', namespace='social'))
 ]

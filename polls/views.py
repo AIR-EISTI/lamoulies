@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.urls import reverse
-from django.http import HttpResponseRedirect
-
+from django.http import HttpResponseRedirect, HttpResponseForbidden
 from .models import Question
 from .forms import LamouliesForm
+from .utils import getResults
 
 
 def home(request):
@@ -20,3 +20,12 @@ def home(request):
     form = LamouliesForm(request.POST or None)
     questions = Question.objects.all()
     return render(request, 'index.html', {'questions': questions, 'form': form})
+
+
+def stats(request):
+    if not request.user.is_staff:
+        return HttpResponseForbidden
+
+    questions = {question: getResults(question) for question in Question.objects.all()}
+    print(questions)
+    return render(request, 'stats.html', {'questions': questions})
