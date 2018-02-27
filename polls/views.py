@@ -1,32 +1,51 @@
 from django.shortcuts import render
 from django.urls import reverse
-from django.http import HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponseRedirect, HttpResponseForbidden, HttpResponse, JsonResponse
 from .models import Question, Answer
-from .forms import LamouliesForm
-from .utils import getResults
+from .forms import LamouliesForm, AnswerForm
+from .utils import getResults, isUserAuthenticatedAndEistiStudent
+from django.views.decorators.csrf import csrf_exempt
 
 
 def home(request):
-    if not request.user.is_authenticated:
-        return render(request, 'index.html', {'error': 'not_authenticated'})
+    is_auth_eisti, error = isUserAuthenticatedAndEistiStudent(request)
+    if not is_auth_eisti:
+        return render(request, 'index.html', {'error': error})
 
-    user = [e for e in request.user
-                              .social_auth
-                              .filter(provider='google-openidconnect')
-            if e.extra_data.get('hd') == 'eisti.eu']
+    initial = {
+        'question_%d' % answer.question.pk: answer.choice
+        for answer in request.user.answer_set.all()
+        }
 
-    if not len(user):
-        return render(request, 'index.html', {'error': 'domain'})
-    form = LamouliesForm(request.POST or None)
+    form = LamouliesForm(initial=initial)
+    return render(request, 'index.html', {'form': form})
+
+
+@csrf_exempt
+def postAnswer(request):
+    if request.method != 'POST':
+        return HttpResponse(status=405)
+
+    is_auth_eisti, error = isUserAuthenticatedAndEistiStudent(request)
+    if not is_auth_eisti:
+        return HttpResponseForbidden()
+    form = AnswerForm(request.POST)
+
     if form.is_valid():
-        for question_id, response in form.cleaned_data.items():
-            pk = int(question_id.split('_')[1])
-            Answer.objects.create(user=request.user,
-                                  choice=response,
-                                  question=Question.objects.get(pk=pk))
+        question = form.cleaned_data['question']
+        answer = Answer.objects.filter(
+            question=question,
+            user=request.user)
+        if not answer:
+            answer = Answer(question=question, user=request.user)
+        else:
+            answer = answer.first()
 
-    saved = form.is_valid()
-    return render(request, 'index.html', {'form': form, 'saved': saved})
+        answer.choice = form.cleaned_data['choice']
+
+        answer.save()
+        return HttpResponse(status=204)
+    return JsonResponse(dict(form.errors.items()), status=400)
 
 
 def stats(request):

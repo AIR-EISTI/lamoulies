@@ -17,14 +17,17 @@
       <img src="/static/img/unicorn-3090550_1920.jpg"/>
     </div>
     {% else %}
-      {% if saved %}
-      saved
-      {% endif %}
-      <form action="/" method="post">
-        {% csrf_token %}
-        {{ form.as_ul }}
-        <input type="submit" value="Voter">
-      </form>
+      <div>
+        {% for field in form %}
+          <div class="question">
+            {{ field.label_tag }}
+            <p>
+              {{ field.help_text}}
+            </p>
+            {{ field }}
+          </div>
+        {% endfor %}
+      </div>
     {% endif %}
   </body>
 </html>

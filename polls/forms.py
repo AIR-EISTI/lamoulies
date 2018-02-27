@@ -1,5 +1,5 @@
 from django import forms
-from .models import Question
+from .models import Question, Answer
 
 
 class LamouliesForm(forms.Form):
@@ -9,4 +9,11 @@ class LamouliesForm(forms.Form):
             self.fields['question_%d' % question.pk] = forms.ModelChoiceField(
                 label=question.title,
                 queryset=question.answer_type.choices,
-                to_field_name='value')
+                to_field_name='value',
+                help_text=question.description)
+
+
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields = ('question', 'choice')
