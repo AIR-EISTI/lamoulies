@@ -99,7 +99,7 @@
     color:white !important;
 }
 
-.question .ss-main .ss-disabled
+.question .ss-main .ss-single-selected .placeholder .ss-disabled
 {
     color:white  !important;;
 }
