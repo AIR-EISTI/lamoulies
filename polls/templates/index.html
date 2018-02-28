@@ -4,10 +4,12 @@
     <meta charset="utf-8">
     <title>Lamoulies d'Or</title>
     <link rel="stylesheet" href="/static/style/style.css" />
+    <link rel="stylesheet" href="/static/style/question.css" />
   </head>
-  <body>
+  <body {% if error %} id="login-body" {% else %} id="question-body"{%endif %}>
     {% if error %}
     <div id="login">
+
       <h1>Lamoulies <strong>d'OR</strong></h1>
       <p class="description">Connectez vous pour pouvoir votez !</p>
       <div id="button-container">
@@ -17,15 +19,26 @@
       <img src="/static/img/unicorn-3090550_1920.jpg"/>
     </div>
     {% else %}
+    <header class="center">
+    <h1>Lamoulies <strong>d'OR</strong></h1>
+    <p class="description-top">Vous pouvez modifiez vos réponse jusqu'au date</p>
+    </header>
       <div>
         {% for field in form %}
           <div class="question">
+            <div class="counter gradient">
+                {{ forloop.counter }}
+            </div>
+            <div class="subject">
             {{ field.label_tag }}
-            <p>
+            <p class="description">
               {{ field.help_text}}
             </p>
             {{ field }}
+            </div>
+            
           </div>
+          <div class="line"></div>
         {% endfor %}
       </div>
     {% endif %}

@@ -1,0 +1,154 @@
+.center
+{
+    text-align: center;
+}
+
+.question
+{
+    margin: auto;
+  
+    padding: 0px 0px;
+    width: 500px;
+    color: rgb(80,80,80);
+    line-height: 1.2;
+    
+    
+    display: flex;  
+
+}
+
+.question .counter
+{
+    align-self: center;
+    width: 70px;
+    height: 70px;
+    background-color: black;
+    color: white;
+    margin-right: 20px;
+    border-radius: 35px;
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items:center;
+   
+    font-family: arimo, 'sans';
+    font-size: 2em;
+    font-weight: 100;
+    box-shadow: 0px 0px 50px rgba(200,200,200,0.8);
+}
+
+.question:nth-child(5n +0) .gradient
+{
+    background: linear-gradient(to left,#7892ff,#6fcaff);
+}
+
+.question:nth-child(5n +1) .gradient
+{
+    background: linear-gradient(to left,#f02fc2,#bc2ff0);
+}
+
+.question:nth-child(5n + 2) .gradient
+{
+    
+    background: linear-gradient(to left,#fe9778,#ffce71);
+}
+
+.question:nth-child(5n + 3) .gradient
+{
+    background: linear-gradient(to left,#3bb2b8,#42e695);
+    
+}
+
+.question:nth-child(5n + 4) .gradient
+{
+    
+    background: linear-gradient(to left,#77f8e2,#6ee2f9);
+}
+
+
+
+/***************the select*****************/
+
+.question select
+{
+    height: 35px;
+    display: block;
+    width: 180px;
+    color: white;
+    text-align: center;
+    border: none;
+    box-shadow: 0px 0px 50px rgba(200,200,200,0.8);
+    padding-left: 10px;
+    border-radius: 60px;
+    font-size: 1.1em;
+    font-family: arimo, 'sans';
+
+}
+
+.question option
+{
+    color:black;
+}
+
+.question:nth-child(5n +0) select
+{
+    background: linear-gradient(to left,#7892ff,#6fcaff);
+}
+
+.question:nth-child(5n +1) select
+{
+    background: linear-gradient(to left,#f02fc2,#bc2ff0);
+}
+
+.question:nth-child(5n + 2) select
+{
+    
+    background: linear-gradient(to left,#fe9778,#ffce71);
+}
+
+.question:nth-child(5n + 3) select
+{
+    background: linear-gradient(to left,#3bb2b8,#42e695);
+    
+}
+
+.question:nth-child(5n + 4) select
+{
+    
+    background: linear-gradient(to left,#77f8e2,#6ee2f9);
+}
+
+
+.question .subject
+{
+    flex:1;
+    font-family: arimo, 'sans';
+}
+
+.question label
+{
+    display: block;
+    font-size: 1.5em;
+    color:#5d5d5d;
+}
+
+#question-body .line
+{
+    width: 250px;
+    margin: auto;
+    height: 1px;
+    background-color: lightgrey;
+    margin: 15px auto;
+    
+}
+
+.question label
+{
+
+}
+
+.question .description
+{
+
+}
+

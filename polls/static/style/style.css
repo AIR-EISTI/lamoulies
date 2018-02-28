@@ -9,7 +9,7 @@ html
     background-attachment: fixed;
     background-position: center bottom;
     font-family: Georgia, Times, "Times New Roman", serif; 
-    background: linear-gradient(to bottom right, red,orange,yellow,green,blue,indigo,violet); */
+    
 }
 
 @font-face
@@ -19,18 +19,33 @@ html
 	src:url("/static/fonts/renogare_soft/RenogareSoft-Regular.ttf") format("truetype"); /* chromeã€firefoxã€operaã€Safari, Android, iOS 4.2+*/
 }
 
+@font-face
+{
+	font-family: "arimo";
+	
+	src:url("/static/fonts/arimo/Arimo-Regular.ttf") format("truetype"); /* chromeã€firefoxã€operaã€Safari, Android, iOS 4.2+*/
+}
+
+
 
 body
 {
     margin: 0;
     height: 100%;
     background-color: rgb(244,244,244);
+    overflow-x: auto;
+    
+}
+
+
+#login-body
+{
     display:flex;
-    display: flex;
     justify-content: center;
     flex-direction: column;
     align-items:center;
 }
+
 
 #login
 {
@@ -42,18 +57,20 @@ body
     box-shadow: 1px 1px 15px lightgrey;
 }
 
-#login h1 strong
+h1 strong
 {
     color:darkgoldenrod;
+    
 }
 
-#login h1
+h1
 {
     padding: 80px 0;
     font-family: renogare, 'sans';
     letter-spacing: -1px;
     font-weight: 500;
     color: grey;
+    text-align: center;
 }
 
 #login .description
@@ -108,4 +125,23 @@ body
     background-position: center;
     background-image: url("img/unicorn-3090550_1920.jpg");
     width: 500px;
+}
+
+
+#question-body
+{
+    margin-top: 20px;
+}
+
+#question-body h1
+{
+    padding-bottom: 50px;
+}
+
+#question-body .description-top
+{
+    font-size: 20px;
+    border-left: 2px solid black;
+    padding: 10px;
+    display: inline-block;
 }
