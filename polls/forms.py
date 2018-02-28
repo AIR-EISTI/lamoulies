@@ -9,8 +9,9 @@ class LamouliesForm(forms.Form):
             self.fields['question_%d' % question.pk] = forms.ModelChoiceField(
                 label=question.title,
                 queryset=question.answer_type.choices,
-                to_field_name='value',
-                help_text=question.description)
+                to_field_name='pk',
+                help_text=question.description,
+                empty_label='Selectionner un choix')
 
 
 class AnswerForm(forms.ModelForm):

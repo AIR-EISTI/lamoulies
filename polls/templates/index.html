@@ -5,6 +5,8 @@
     <title>Lamoulies d'Or</title>
     <link rel="stylesheet" href="/static/style/style.css" />
     <link rel="stylesheet" href="/static/style/question.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.11.1/slimselect.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.11.1/slimselect.min.css" rel="stylesheet"></link>
   </head>
   <body {% if error %} id="login-body" {% else %} id="question-body"{%endif %}>
     {% if error %}
@@ -42,5 +44,38 @@
         {% endfor %}
       </div>
     {% endif %}
+    <script type="text/javascript">
+      function postAnswer (question, answer) {
+        let xhr = new XMLHttpRequest()
+        xhr.open('POST', '/answer/')
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+        xhr.send(`question=${question}&choice=${answer}`)
+      }
+
+      function onChange (event) {
+        if (this.value.length) {
+          let questionId = this.name.split('_')[1]
+          let choice = this.value
+          postAnswer(questionId, choice)
+        }
+      }
+
+      let selectElts = document.querySelectorAll('select')
+
+      for (let select of selectElts) {
+        if (select.children[0].dataset.placeholder !== true) {
+          select.children[0].dataset.placeholder = true
+        }
+
+        select.onchange = onChange
+
+        new SlimSelect({
+          select: select,
+          allowDeselect: true,
+          placeholder: 'Selectionner un choix',
+          searchHighlight: true
+        })
+      }
+    </script>
   </body>
 </html>
