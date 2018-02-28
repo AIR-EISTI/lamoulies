@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <title>Lamoulies d'Or</title>
     <link rel="stylesheet" href="/static/style/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.11.1/slimselect.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.11.1/slimselect.min.css" rel="stylesheet"></link>
   </head>
   <body>
     {% if error %}
@@ -29,5 +31,25 @@
         {% endfor %}
       </div>
     {% endif %}
+    <script type="text/javascript">
+      function onChange (event) {
+        console.log(this.value)
+      }
+
+      let selectElts = document.querySelectorAll('select')
+      for (let select of selectElts) {
+        if (select.children[0].dataset.placeholder !== true) {
+          select.children[0].dataset.placeholder = true
+        }
+
+        select.onchange = onChange
+
+        new SlimSelect({
+          select: select,
+          allowDeselect: true,
+          placeholder: 'Selectionner un choix'
+        })
+      }
+    </script>
   </body>
 </html>
