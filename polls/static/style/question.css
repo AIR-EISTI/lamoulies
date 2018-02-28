@@ -87,8 +87,11 @@
 
 .question .ss-main .ss-content
 {
-    width: 250px !important;
-    border-radius: 15px !important;
+    width: 220px !important;
+    border-radius: 0px !important;
+    left: 15px;
+    margin-top: 0px;
+    box-shadow: 0px 0px 50px rgba(200,200,200,0.8) !important;
 }
 
 .question .ss-main .placeholder
