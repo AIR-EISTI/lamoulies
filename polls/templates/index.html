@@ -47,16 +47,24 @@
     <script type="text/javascript">
       function postAnswer (question, answer) {
         let xhr = new XMLHttpRequest()
-        xhr.open('POST', '/answer/')
+        xhr.open('POST', '/answers/')
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
         xhr.send(`question=${question}&choice=${answer}`)
       }
 
+      function deleteAnswer (question) {
+        let xhr = new XMLHttpRequest()
+        xhr.open('DELETE', `/answers/question/${question}/`)
+        xhr.send()
+      }
+
       function onChange (event) {
+        let questionId = this.name.split('_')[1]
         if (this.value.length) {
-          let questionId = this.name.split('_')[1]
           let choice = this.value
           postAnswer(questionId, choice)
+        } else {
+          deleteAnswer(questionId)
         }
       }
 

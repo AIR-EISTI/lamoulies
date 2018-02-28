@@ -48,6 +48,18 @@ def postAnswer(request):
     return JsonResponse(dict(form.errors.items()), status=400)
 
 
+@csrf_exempt
+def delAnswer(request, pk=None):
+    if request.method != 'DELETE':
+        return HttpResponse(status=405)
+    try:
+        answer = request.user.answer_set.get(question__pk=pk)
+        answer.delete()
+        return HttpResponse(status=204)
+    except Answer.DoesNotExist:
+        return HttpResponse(status=404)
+
+
 def stats(request):
     if not request.user.is_staff:
         return HttpResponseForbidden
