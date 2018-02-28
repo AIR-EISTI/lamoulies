@@ -32,11 +32,23 @@
       </div>
     {% endif %}
     <script type="text/javascript">
+      function postAnswer (question, answer) {
+        let xhr = new XMLHttpRequest()
+        xhr.open('POST', '/answer/')
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+        xhr.send(`question=${question}&choice=${answer}`)
+      }
+
       function onChange (event) {
-        console.log(this.value)
+        if (this.value.length) {
+          let questionId = this.name.split('_')[1]
+          let choice = this.value
+          postAnswer(questionId, choice)
+        }
       }
 
       let selectElts = document.querySelectorAll('select')
+
       for (let select of selectElts) {
         if (select.children[0].dataset.placeholder !== true) {
           select.children[0].dataset.placeholder = true
@@ -47,7 +59,8 @@
         new SlimSelect({
           select: select,
           allowDeselect: true,
-          placeholder: 'Selectionner un choix'
+          placeholder: 'Selectionner un choix',
+          searchHighlight: true
         })
       }
     </script>
