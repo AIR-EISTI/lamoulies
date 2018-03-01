@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponseForbidden, HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import logout
+
 from .models import Question, Answer
 from .forms import LamouliesForm, AnswerForm
 from .utils import getResults, isUserAuthenticatedAndEistiStudent
-from django.views.decorators.csrf import csrf_exempt
 
 
 def home(request):
@@ -71,3 +73,8 @@ def stats(request):
 
     questions = {question: getResults(question) for question in Question.objects.all()}
     return render(request, 'stats.html', {'questions': questions})
+
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')

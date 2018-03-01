@@ -22,6 +22,7 @@ urlpatterns = [
     path('answers/', views.postAnswer, name='postAnswer'),
     path('answers/question/<int:pk>/', views.delAnswer, name='delAnswer'),
     path('stats/', views.stats, name='stats'),
+    path('logout/', views.logout_view, name='logout'),
     path('admin/', admin.site.urls),
     path('auth/', include('social_django.urls', namespace='social'))
 ]
