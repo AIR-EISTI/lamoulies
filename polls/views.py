@@ -1,12 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponseForbidden, HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.core.paginator import Paginator
 from django.contrib.auth import logout
-
-from .models import Question, Answer
+from .models import Question, Answer, AnswerType
 from .forms import LamouliesForm, AnswerForm
 from .utils import getResults, isUserAuthenticatedAndEistiStudent
+
 
 
 def home(request):
@@ -65,6 +66,29 @@ def delAnswer(request, pk=None):
         return HttpResponse(status=204)
     except Answer.DoesNotExist:
         return HttpResponse(status=404)
+
+
+@csrf_exempt
+def getQuestionResults(request, pk=None):
+    if request.method != 'GET':
+        return HttpResponse(status=405)
+
+    is_auth_eisti, error = isUserAuthenticatedAndEistiStudent(request)
+    if not is_auth_eisti:
+        return HttpResponseForbidden()
+
+    question = get_object_or_404(Question, pk=pk)
+    result_list = getResults(question)
+    paginator = Paginator(result_list, 5)
+
+    results_page = paginator.get_page(request.GET.get('page'))
+
+    next_page_number = None
+    if results_page.has_next():
+        next_page_number = results_page.next_page_number()
+
+    data = {'results': results_page.object_list, 'next_page': next_page_number}
+    return JsonResponse(data, safe=False)
 
 
 def stats(request):
