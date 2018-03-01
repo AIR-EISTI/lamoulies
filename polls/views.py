@@ -52,6 +52,11 @@ def postAnswer(request):
 def delAnswer(request, pk=None):
     if request.method != 'DELETE':
         return HttpResponse(status=405)
+
+    is_auth_eisti, error = isUserAuthenticatedAndEistiStudent(request)
+    if not is_auth_eisti:
+        return HttpResponseForbidden()
+
     try:
         answer = request.user.answer_set.get(question__pk=pk)
         answer.delete()
