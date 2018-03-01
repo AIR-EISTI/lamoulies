@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponseForbidden, HttpRespons
 from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator
 from django.contrib.auth import logout
+from django.contrib.admin.views.decorators import staff_member_required
 from .models import Question, Answer, AnswerType
 from .forms import LamouliesForm, AnswerForm
 from .utils import getResults, isUserAuthenticatedAndEistiStudent
@@ -69,13 +70,10 @@ def delAnswer(request, pk=None):
 
 
 @csrf_exempt
+@staff_member_required
 def getQuestionResults(request, pk=None):
     if request.method != 'GET':
         return HttpResponse(status=405)
-
-    is_auth_eisti, error = isUserAuthenticatedAndEistiStudent(request)
-    if not is_auth_eisti:
-        return HttpResponseForbidden()
 
     question = get_object_or_404(Question, pk=pk)
     result_list = getResults(question)
@@ -91,12 +89,9 @@ def getQuestionResults(request, pk=None):
     return JsonResponse(data, safe=False)
 
 
+@staff_member_required
 def stats(request):
-    if not request.user.is_staff:
-        return HttpResponseForbidden
-
-    questions = {question: getResults(question) for question in Question.objects.all()}
-    return render(request, 'stats.html', {'questions': questions})
+    return render(request, 'stats.html')
 
 
 def logout_view(request):
