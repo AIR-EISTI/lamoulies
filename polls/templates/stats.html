@@ -7,12 +7,46 @@
   </head>
   <body>
     <div>
-      {% for question, results in questions.items %}
-        <h3>{{ question.title }}</h3>
-          {% for choice, votes in results %}
-          <p>{{ choice }} : {{ votes }}</p>
-          {% endfor %}
+      {% for question in questions %}
+        <div class="question">
+          <h3>{{ question.title }}</h3>
+          <ol>
+          </ol>
+          <a href="#" data-questionid="{{ question.pk }}">Charger plus</a>
+        </div>
       {% endfor %}
     </div>
+    <script type="text/javascript">
+      function updatePage (linkMore, e) {
+        let data = JSON.parse(e.target.responseText)
+        let ol = linkMore.previousElementSibling
+
+        for (let res of data.results) {
+          let li = document.createElement('li')
+          li.textContent = res.join(' : ')
+          ol.appendChild(li)
+        }
+
+        if (data.next_page !== null) {
+          linkMore.onclick = loadPage.bind(linkMore, data.next_page)
+        } else {
+          linkMore.parentNode.removeChild(linkMore)
+        }
+      }
+
+      function loadPage (page) {
+        let xhr = new XMLHttpRequest()
+        xhr.open('GET', `/stats/question/${this.dataset.questionid}/?page=${page}`)
+        xhr.onload = updatePage.bind(null, this)
+        xhr.send()
+      }
+
+
+      let elts = document.querySelectorAll('.question a')
+
+      for (let elt of elts) {
+        loadPage.call(elt, 1)
+      }
+    </script>
   </body>
 </html>

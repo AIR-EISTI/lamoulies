@@ -91,7 +91,7 @@ def getQuestionResults(request, pk=None):
 
 @staff_member_required
 def stats(request):
-    return render(request, 'stats.html')
+    return render(request, 'stats.html', {'questions': Question.objects.all()})
 
 
 def logout_view(request):
