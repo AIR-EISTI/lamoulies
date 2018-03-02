@@ -135,7 +135,9 @@ h1
 
 #question-body h1
 {
-    padding-bottom: 50px;
+    padding-bottom: 0px;
+    padding-top: 90px;
+    margin-bottom: 12px;
 }
 
 #question-body .description-top

@@ -1,3 +1,23 @@
+#logout
+{
+    font-family: arimo;
+    margin: 5px;
+    padding: 8px 18px;
+    text-decoration: none;
+    color: white;
+    font-weight: 800;
+    background-color: black;
+    border-radius: 20px;
+    box-shadow: 0px 0px 50px rgba(200,200,200,0.8);
+    background: linear-gradient(to left,#ed3c6e,red);
+    box-shadow: 0px 0px 20px #e87495;
+    display: block;
+    width: 60px;
+    margin: auto;
+    margin-bottom: 60px;
+    
+}
+
 .center
 {
     text-align: center;
