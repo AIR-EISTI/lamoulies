@@ -73,6 +73,7 @@ TEMPLATES = [
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google_openidconnect.GoogleOpenIdConnect',
+    'django.contrib.auth.backends.ModelBackend'
 )
 
 WSGI_APPLICATION = 'lamouliesdor.wsgi.application'
