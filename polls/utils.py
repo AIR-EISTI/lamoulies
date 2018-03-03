@@ -1,4 +1,5 @@
 from operator import itemgetter
+from django.contrib.auth import logout
 
 
 def getResults(question):
@@ -20,5 +21,6 @@ def isUserAuthenticatedAndEistiStudent(request):
             if e.extra_data.get('hd') == 'eisti.eu']
 
     if not len(user):
+        logout(request)
         return (False, 'domain')
     return (True, None)
