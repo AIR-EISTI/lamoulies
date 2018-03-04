@@ -12,11 +12,12 @@
     {% if error %}
     <div id="login">
       <h1>Lamoulies <strong>d'OR</strong></h1>
-      <p class="description">Connectez vous pour pouvoir votez !</p>
+      <p class="description">Connectez vous pour pouvoir voter !</p>
       <div id="button-container">
         <div class="line"></div>
         <a href="{% url 'social:begin' 'google-openidconnect' %}">Login with Google</a>
       </div>
+      <p class="error">{% if error == 'domain' %} Compte EISTI requis{%else%} &zwnj; {% endif %}</p>
       <img src="/static/img/unicorn-3090550_1920.jpg"/>
     </div>
     {% else %}

@@ -93,7 +93,7 @@
 {
     height: 35px !important;
     display: block;
-    width: 250px !important;
+    width: 320px !important;
     color: white;
     text-align: center;
     border: none !important;
@@ -107,7 +107,7 @@
 
 .question .ss-main .ss-content
 {
-    width: 220px !important;
+    width: 290px !important;
     border-radius: 0px !important;
     left: 15px;
     margin-top: 0px;
@@ -188,6 +188,6 @@
 
 .question .description
 {
-
+    min-height: 40px;
 }
 

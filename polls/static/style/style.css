@@ -103,7 +103,14 @@ h1
     position: relative;
     z-index: 1;
     margin: 20px 0px;
-    margin-bottom: 80px;
+    margin-bottom: 0px;
+}
+
+#login .error
+{
+    margin-top: 20px;
+    margin-bottom: 35px;
+    color:red;
 }
 
 #button-container .line
