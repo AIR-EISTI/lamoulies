@@ -39,6 +39,7 @@
         xhr.open('GET', `/stats/question/${this.dataset.questionid}/?page=${page}`)
         xhr.onload = updatePage.bind(null, this)
         xhr.send()
+        return false
       }
 
 
