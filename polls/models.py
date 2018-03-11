@@ -34,7 +34,7 @@ class Answer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
-        unique_together = ('question', 'choice')
+        unique_together = ('question', 'choice', 'user')
 
     def __str__(self):
         return self.user.username + " : " + self.question.title + " -> " + self.choice.value
