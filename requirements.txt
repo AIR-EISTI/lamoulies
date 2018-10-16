@@ -5,6 +5,7 @@ Django==2.0.2
 future==0.16.0
 idna==2.6
 oauthlib==2.0.6
+psycopg2==2.7.5
 pycryptodomex==3.4.12
 pyjwkest==1.4.0
 PyJWT==1.5.3
@@ -17,3 +18,4 @@ six==1.11.0
 social-auth-app-django==2.1.0
 social-auth-core==1.7.0
 urllib3==1.22
+uWSGI==2.0.17.1
