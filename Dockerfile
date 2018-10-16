@@ -30,4 +30,4 @@ ENV UWSGI_VIRTUALENV=/venv UWSGI_WSGI_FILE=lamouliesdor/wsgi.py UWSGI_HTTP=:8000
 
 ENTRYPOINT ["/code/docker-entrypoint.sh"]
 
-CMD ["/venv/bin/uwsgi", "--http-auto-chunked", "--http-keepalive", "--touch-reload=/code/lamouliesdor/settings.py"]
+CMD ["/venv/bin/uwsgi", "--http-auto-chunked", "--http-keepalive", "--touch-reload=/code/lamouliesdor/settings.py", "--static-map", "/static=/code/static"]
