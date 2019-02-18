@@ -1,5 +1,6 @@
 from operator import itemgetter
 from django.contrib.auth import logout
+from hashlib import md5
 
 
 def getResults(question):
@@ -24,3 +25,10 @@ def isUserAuthenticatedAndEistiStudent(request):
         logout(request)
         return (False, 'domain')
     return (True, None)
+
+
+def social_pipeline_anonymisation(details, response, *args, **kwargs):
+    sub = response['sub']
+    details['username'] = md5((details['username'] + sub).encode()).hexdigest()
+    details['email'] = md5((details['email'] + sub).encode()).hexdigest()
+    return details

@@ -139,3 +139,14 @@ SOCIAL_AUTH_GOOGLE_OPENIDCONNECT_SECRET = 'RtV3A6pkywfaCPpqddu705Lz'
 SOCIAL_AUTH_GOOGLE_OPENIDCONNECT_KEY = '196112637747-c076gl4bc4icpqrtthp6l6l43kjcredg.apps.googleusercontent.com'
 
 SOCIAL_AUTH_GET_ALL_EXTRA_DATA = True
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'polls.utils.social_pipeline_anonymisation',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.social_auth.associate_by_email',
+)
