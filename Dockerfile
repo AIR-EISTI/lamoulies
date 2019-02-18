@@ -14,7 +14,7 @@ RUN set -ex \
 		pcre-dev \
 		py3-virtualenv \
 		python3-dev \
-	&& virtualenv /venv \
+	&& python -m venv /venv \
 	&& /venv/bin/pip install -U pip \
 	&& /venv/bin/pip install -r /requirements.txt
 
